@@ -43,17 +43,28 @@
                     <i class="fa-regular fa-user text-2xl"></i>
                 </a>
                 <div class="absolute left-0 w-48 bg-white text-gray-800 mt-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-300 z-50">
+                  <?php if(isset($_SESSION['user_client'])): ?>
                     <ul>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Đăng Nhập</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Chi tiết tài khoản</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Đăng Ký</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Đơn mua</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Logout</a>
                         </li>
                     </ul>
+                    <?php else: ?>
+                      <a class="dropdown-item" href='?act=form-dang-nhap-client'>
+                                    <i class="mdi mdi-login text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-login">Login</span>
+                      </a>
+                      <?php endif; ?>
+
                 </div>
             </div>
-            <a href="#" class="text-white relative">
+            <a href="<?= BASE_URL . '?act=gio-hang' ?>" class="text-white relative">
                 <i class="fa-solid fa-shopping-bag text-2xl"></i>
                 <div class="absolute top-0 right-0 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">3</div>
             </a>
