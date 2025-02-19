@@ -15,6 +15,7 @@
     public function dangki(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
+            
             $ho = $_POST['ho'];
             $ten = $_POST['ten'];
             $email = $_POST['email'];
@@ -22,7 +23,8 @@
             $dien_thoai = $_POST['dien_thoai'];
             $dia_chi = $_POST['dia_chi'];
             $thanhpho = $_POST['thanhpho'];
- 
+            $ngay_capnhat = $_POST['ngay_capnhat'];
+
           $errors = [];
 
           if (empty($email)) {
@@ -70,19 +72,23 @@
             $errors['thanhpho'] = 'Thành phố là bắt buộc';
         }
 
+        if (empty($ngay_capnhat)) {
+            $errors['ngay_capnhat'] = 'Ngày cập nhật là bắt buộc';
+        }
+        
+
        //Lỗi lưu vào session
          $_SESSION['errors'] = $errors;
 
          if(empty($errors)){
             $vai_tro= 'khách hàng';
 
-            $this->modelDangNhap->checkdangki($ho,$ten,$email,$mat_khau,$dia_chi,$dien_thoai,$thanhpho,$vai_tro);
+            $this->modelDangNhap->checkdangki($ho, $ten, $email, $mat_khau, $dien_thoai, $dia_chi, $thanhpho, $vai_tro, $ngay_capnhat);
 
             header('Location: ' . BASE_URL . '?act=form-dang-nhap-client');
             exit();
          }else {
             $_SESSION['flash'] = true;
-
             header('Location: ' . BASE_URL . '?act=form-dang-ki-client');
              exit();
          }

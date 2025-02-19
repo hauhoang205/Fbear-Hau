@@ -37,7 +37,7 @@ match ($act) {
     'form-dang-ki-client' => (new dangNhapClientController())->formdangki(),
     'check-dang-ki-client' => (new dangNhapClientController())->dangki(),
     'form-dang-nhap-client' => (new dangNhapClientController())->formdangnhap(),
-    // 'check-dang-nhap-client' => (new dangNhapClientController())->formdangnhap(),
+    // 'check-dang-nhap-client' => (new dangNhapClientController())->dangnhap(),
     // 'log-out-client' => (new dangNhapClientController())->logoutclient(),
 
 };

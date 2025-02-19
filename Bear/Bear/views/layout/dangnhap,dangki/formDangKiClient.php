@@ -64,48 +64,54 @@
         <h2>Đăng Ký Tài Khoản</h2>
         <form action="<?= BASE_URL . '?act=check-dang-ki-client' ?>" method="post">
             <label for="ho">Họ:</label>
-            <input type="text" id="ho" name="ho" required>
+            <input type="text" id="ho" name="ho" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['ho']) ?>
             </span>
 
             <label for="ten">Tên:</label>
-            <input type="text" id="ten" name="ten" required>
+            <input type="text" id="ten" name="ten" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['ten']) ?>
             </span>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['email']) ?>
             </span>
 
             <label for="mat_khau">Mật khẩu:</label>
-            <input type="password" id="mat_khau" name="mat_khau" required>
+            <input type="password" id="mat_khau" name="mat_khau" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['mat_khau']) ?>
             </span>
 
             <label for="dien_thoai">Điện thoại:</label>
-            <input type="text" id="dien_thoai" name="dien_thoai" required>
+            <input type="text" id="dien_thoai" name="dien_thoai" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['dien_thoai']) ?>
             </span>
 
             <label for="dia_chi">Địa chỉ:</label>
-            <input type="text" id="dia_chi" name="dia_chi" required>
+            <input type="text" id="dia_chi" name="dia_chi" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['dia_chi']) ?>
             </span>
 
             <label for="thanhpho">Thành phố:</label>
-            <input type="text" id="thanhpho" name="thanhpho" required>
+            <input type="text" id="thanhpho" name="thanhpho" >
             <span class="text-danger">
                  <?= !empty($_SESSION['errors']['thanhpho']) ?>
             </span>
 
+            <label for="ngay_capnhat">Ngày tạo:</label>
+            <input type="datetime-local" id="ngay_capnhat" name="ngay_capnhat" >
+            <span class="text-danger">
+                 <?= !empty($_SESSION['errors']['ngay_capnhat']) ?>
+            </span>
 
+                
             <button type="submit" name="dangky">Đăng ký</button>
             <div class="footer">
             <p >

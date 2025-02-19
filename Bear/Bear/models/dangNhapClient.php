@@ -8,14 +8,15 @@ class DangNhapClient {
      $this->conn = connectDB();
    }
 
-   public function checkdangki($ten,$email,$mat_khau,$dien_thoai,$dia_chi,$thanhpho,$vai_tro,$ngay_capnhat){
+   public function checkdangki($ho,$ten,$email,$mat_khau,$dien_thoai,$dia_chi,$thanhpho,$vai_tro,$ngay_capnhat){
        try{
-           $sql = 'INSERT INTO user (ten,email,mat_khau,dien_thoai,dia_chi,thanhpho,vai_tro,ngay_capnhat)
-            VALUES (:ten,:email,:mat_khau,:dien_thoai,:dia_chi,:thanhpho,:vai_tro,:ngay_capnhat)' ;
+           $sql = 'INSERT INTO user (ho,ten,email,mat_khau,dien_thoai,dia_chi,thanhpho,vai_tro,ngay_capnhat)
+            VALUES (:ho,:ten,:email,:mat_khau,:dien_thoai,:dia_chi,:thanhpho,:vai_tro,:ngay_capnhat)' ;
 
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([
+              ':ho' => $ho,
                 ':ten' => $ten,
                 ':email' => $email,
                 ':mat_khau' => $mat_khau,
