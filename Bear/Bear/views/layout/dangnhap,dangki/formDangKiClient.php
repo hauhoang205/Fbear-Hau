@@ -65,7 +65,7 @@
         <form action="<?= BASE_URL . '?act=check-dang-ki-client' ?>" method="post">
             <label for="ho">Họ:</label>
             <input type="text" id="ho" name="ho" >
-            <span class="text-danger">
+            <span class="text-red-700">
                  <?= !empty($_SESSION['errors']['ho']) ?>
             </span>
 

@@ -45,6 +45,29 @@ class DangNhapClient {
     $stmt->execute(['dien_thoai' => $dien_thoai]);
     return $stmt->rowCount() > 0;
 }
+
+   public function checkLoginClient($email,$mat_khau){
+     try{
+          $sql = 'SELECT * FROM user WHERE email = :email';
+          $stmt = $this->conn->prepare($sql);
+          $stmt->execute(['email' => $email]);
+          $user = $stmt->fetch();
+        if($mat_khau == $user['mat_khau']){
+          if($user['vai_tro']== "khách hàng"){
+            return $user;
+          }else{
+            return 'Đăng nhập sai thông tin';
+          }
+        }else{
+          return 'Đăng nhập sai thông tin';
+        } 
+         
+
+     }catch(Exception $e){
+       echo 'Lỗi' . $e->getMessage();
+       return false;
+     }
+   }
 }
 
 ?>

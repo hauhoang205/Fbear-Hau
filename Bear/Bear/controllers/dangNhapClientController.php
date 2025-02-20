@@ -98,5 +98,41 @@
         require_once './views/layout/dangnhap,dangki/formDangNhapClient.php';
         deleteSessionError();
     }
+
+    public function dangnhap(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $email = $_POST['email'];
+            $mat_khau = $_POST['mat_khau'];
+            //   var_dump($mat_khau);die;
+
+            $errors = [];
+            if(empty($email)){
+                $errors['email'] = 'Email là bắt buộc';
+            }
+            if(empty($mat_khau)){
+                $errors['mat_khau'] = 'Password là bắt buộc';
+            }
+
+           if(empty($errors)){
+              $user = $this->modelDangNhap->checkLoginClient($email,$mat_khau);
+           }else{
+             $_SESSION['errors'] = $errors;
+             header('Location: ' . BASE_URL . '?act=form-dang-nhap-client');
+             exit();
+           }
+           if(is_array($user) && $user['email'] === $email){
+            $_SESSION['user_client'] = $user;
+            $_SESSION['flash_message'] = 'Xin chào: ' . $user['ten'];
+            header('Location: ' .BASE_URL );
+            exit();
+           }else {
+            $_SESSION['errors'] = $user;
+            $_SESSION['flash'] = true;
+
+            header('Loaction: ' . BASE_URL . '?act= form-dang-nhap-client');
+            exit();
+           }
+        }
+    }
  }
 ?>
