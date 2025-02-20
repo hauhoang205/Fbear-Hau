@@ -127,5 +127,22 @@ class SanPham {
       echo 'Loi: ' . $e->getMessage();
     }
   }
+
+  public function addDetailGioHang($id_giohang, $id_sanpham , $soluong){
+    try{
+       $sql = 'INSERT INTO cartitem (id_giohang, id_sanpham , soluong)
+       VALUES (:id_giohang, :id_sanpham , :soluong)';
+       
+       $stmt = $this->conn->prepare($sql);
+       $stmt->bindParam(':id_giohang' , $id_giohang);
+       $stmt->bindParam(':id_sanpham' , $id_sanpham);
+       $stmt->bindParam(':soluong' , $soluong);
+       $stmt->execute();
+       return true;
+       
+    }catch(Exception $e){
+      echo 'Loi: ' . $e->getMessage();
+    }
+  }
 }
 ?>
