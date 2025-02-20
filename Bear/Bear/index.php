@@ -24,6 +24,9 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
 //route
     '/' => (new HomeController())->home(),
+    'home' => (new HomeController())->home(),
+
+
     'san-pham' => (new HomeController())->show(),
     //Chi tiết sản phẩm
     'chi-tiet-sp' => (new HomeController())->chitietSP(),
@@ -39,6 +42,6 @@ match ($act) {
     'check-dang-ki-client' => (new dangNhapClientController())->dangki(),
     'form-dang-nhap-client' => (new dangNhapClientController())->formdangnhap(),
     'check-dang-nhap-client' => (new dangNhapClientController())->dangnhap(),
-    // 'log-out-client' => (new dangNhapClientController())->logoutclient(),
+    'log-out-client' => (new dangNhapClientController())->logoutclient(),
 
 };

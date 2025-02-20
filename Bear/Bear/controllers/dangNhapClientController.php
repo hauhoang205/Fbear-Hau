@@ -138,5 +138,16 @@
            }
         }
     }
+
+    public function logoutclient(){
+        if(isset($_SESSION['user_client'])){
+            unset($_SESSION['user_client']);
+
+            $_SESSION['flash_message'] = 'Đăng xuất thành công!';
+            header('Location: ' . BASE_URL . '?act=home');
+        }else{
+            header('Location: ' . BASE_URL . '?act=/');
+        }
+    }
  }
 ?>

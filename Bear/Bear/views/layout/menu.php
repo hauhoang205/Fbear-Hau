@@ -55,7 +55,7 @@
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Đơn mua</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Logout</a>
+                            <a href="?act=log-out-client" class="block px-4 py-2 hover:bg-gray-100 transition">Logout</a>
                         </li>
                     </ul>
                     <?php else: ?>
