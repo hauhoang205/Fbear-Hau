@@ -1,3 +1,5 @@
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <header class="bg-pink-300 text-white shadow-md">
@@ -43,6 +45,7 @@
                     <i class="fa-regular fa-user text-2xl"></i>
                 </a>
                 <div class="absolute left-0 w-48 bg-white text-gray-800 mt-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-300 z-50">
+
                   <?php if(isset($_SESSION['user_client'])): ?>
                     <ul>
                         <li>
@@ -57,7 +60,6 @@
                     </ul>
                     <?php else: ?>
                       <a class="dropdown-item" href='?act=form-dang-nhap-client'>
-                                    <i class="mdi mdi-login text-muted fs-16 align-middle me-1"></i>
                                     <span class="align-middle" data-key="t-login">Login</span>
                       </a>
                       <?php endif; ?>

@@ -44,13 +44,6 @@
             $errors['dien_thoai'] = 'Số điện thoại đã được sử dụng.';
         }
 
-        // Nếu có lỗi, dừng lại
-        if (!empty($errors)) {
-            $_SESSION['errors'] = $errors;
-            header('Location: ' . BASE_URL . '?act=form-dang-ki-client');
-            exit();
-        }
-
         if (empty($ho)) {
             $errors['ho'] = 'Ho là bắt buộc';
 
@@ -75,6 +68,14 @@
         if (empty($ngay_capnhat)) {
             $errors['ngay_capnhat'] = 'Ngày cập nhật là bắt buộc';
         }
+        // Nếu có lỗi, dừng lại
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: ' . BASE_URL . '?act=form-dang-ki-client');
+            exit();
+        }
+
+        
         
 
        //Lỗi lưu vào session
@@ -115,6 +116,7 @@
 
            if(empty($errors)){
               $user = $this->modelDangNhap->checkLoginClient($email,$mat_khau);
+            
            }else{
              $_SESSION['errors'] = $errors;
              header('Location: ' . BASE_URL . '?act=form-dang-nhap-client');
@@ -123,13 +125,15 @@
            if(is_array($user) && $user['email'] === $email){
             $_SESSION['user_client'] = $user;
             $_SESSION['flash_message'] = 'Xin chào: ' . $user['ten'];
+            session_write_close(); // Giữ session không bị mất sau redirect
+            
             header('Location: ' .BASE_URL );
-            exit();
+            // exit();
            }else {
             $_SESSION['errors'] = $user;
             $_SESSION['flash'] = true;
 
-            header('Loaction: ' . BASE_URL . '?act= form-dang-nhap-client');
+            header('Location: ' . BASE_URL . '?act=form-dang-nhap-client');
             exit();
            }
         }

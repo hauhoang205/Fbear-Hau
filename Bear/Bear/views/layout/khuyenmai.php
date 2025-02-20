@@ -9,7 +9,7 @@
     <title>Nhận Khuyến Mãi</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 overflow-x-hidden">
     <div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10 mb-16">
         <h1 class="text-3xl font-bold text-pink-600 text-center">🎉 Nhận Khuyến Mãi Đặc Biệt! 🎉</h1>
         <p class="text-gray-700 text-center mt-2">Đăng ký ngay để nhận ưu đãi hấp dẫn từ cửa hàng.</p>

@@ -2,7 +2,7 @@
 <?php require_once 'layout/header.php' ?>
 <?php require_once 'layout/menu.php' ?>
 
-<body class="bg-pink-100">
+<body class="bg-pink-100 overflow-x-hidden">
   
   <section class="mt-6 container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
