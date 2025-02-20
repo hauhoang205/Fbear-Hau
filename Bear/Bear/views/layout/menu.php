@@ -49,10 +49,10 @@
                   <?php if(isset($_SESSION['user_client'])): ?>
                     <ul>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Chi tiết tài khoản</a>
+                            <a href="?act=chi-tiet-tai-khoan-client" class="block px-4 py-2 hover:bg-gray-100 transition">Chi tiết tài khoản</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition">Đơn mua</a>
+                            <a href="?act=lich-su-mua-hang" class="block px-4 py-2 hover:bg-gray-100 transition">Đơn mua</a>
                         </li>
                         <li>
                             <a href="?act=log-out-client" class="block px-4 py-2 hover:bg-gray-100 transition">Logout</a>

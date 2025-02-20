@@ -10,6 +10,7 @@ require_once './controllers/HomeController.php';
 require_once './controllers/spBanChayController.php';
 require_once './controllers/DichVuController.php';
 require_once './controllers/dangNhapClientController.php';
+require_once './controllers/SanPhamController.php';
 // Require toàn bộ file Models
 require_once './models/Student.php';
 require_once './models/SanPham.php';
@@ -44,4 +45,11 @@ match ($act) {
     'check-dang-nhap-client' => (new dangNhapClientController())->dangnhap(),
     'log-out-client' => (new dangNhapClientController())->logoutclient(),
 
+
+    //Đơn hàng
+    // 'lich-su-mua-hang' => (new SanPhamController())->lichSuMuaHang(),
+
+    //Giỏ hàng
+    'them-gio-hang' =>(new SanPhamController())->addGioHang(),
+    
 };
