@@ -115,7 +115,14 @@ class SanPham {
   public function updateSoLuong($id_giohang,$id_sanpham,$updateSoLuong){
     try{
       $sql = 'UPDATE cartitem SET soluong = :soluong 
-      WHERE id_giohang'
+      WHERE id_giohang = :id_giohang AND id_sanpham = :id_sanpham';
+
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam(':id_giohang' , $id_giohang);
+      $stmt->bindParam(':id_sanpham' , $id_sanpham);
+      $stmt->bindParam(':soluong' , $updateSoLuong);
+      $stmt->execute();
+      return true;
     }catch(Exception $e){
       echo 'Loi: ' . $e->getMessage();
     }
