@@ -2,91 +2,138 @@
 class SanPhamController {
     public $modelSanPham;
 //     public $modelChiTietSp;
-//     public $modelBinhLuan;
 
     public function __construct()
     {
         $this->modelSanPham = new SanPham();
         // $this->modelChiTietSp = new SanPham();
-        // $this->modelBinhLuan = new BinhLuan();
     }
-
-//     public function lichSuMuaHang(){
-//         if(isset($_SESSION['user_client'])){
-//             $userr = $_SESSION['user_client']['id'];
-            
-//             $nguoi_dung_id = $userr;
-            
-//             $arrTrangThaiDonHang = $this->modelSanPham->geTrangThaiDonHang();
-//             $trangthai
-
-//         }
-//     }
+ 
+ public function show() {
+    $id = $_GET['id_danhmuc'];
+    $listSanPham = $this->modelSanPham->chitiet($id);
+ 
+    require "views/sanphamDM.php";
+  }
+ 
+  public function chitietSP(){
+    $id = $_GET['id_sanpham'];
+    $sp = $this->modelSanPham->selectChiTietSp($id);
     
-   public function addGioHang(){
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        
-       $id_sanpham = $_POST['$id_sanpham'];
-       $cosan_stock = $_POST['cosan_stock'];
+    require_once 'views/chitietSP.php';
+  }
+ 
+  public function formGioHang(){
+    require_once 'views/layout/giohang.php';
+  }
 
-       $user = $_SESSION['user_client']['id'];
-       if(isset($user)){
-        //lấy thông tin người dùng từ email
-         $email = $this->modelSanPham->getNguoiDungFormEmail($user);
-        // lấy thông tin giỏ hàng từ người dùng
-         $gio_hang = $this->modelSanPham->getGioHangFormUser($email['id']);
-         //Nếu giỏ hàng chưa tồn tại tạo mới
-         if(!$gio_hang) {
-             $gio_hangId = $this->modelSanPham->addGioHang($email['id']);
-             $gio_hang = ['id' => $gio_hangId];
-             $chi_tiet_gio_hang = [];
+  public function addGioHang()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-         }else {
-            //Lấy chi tiết giỏ hàng
-            $chi_tiet_gio_hang = $this->modelSanPham->getGioHangFormUser($gio_hang['id']);
+        $id_san_pham = $_POST['id_san_pham'];
+        $so_luong = $_POST['so_luong'];
 
-         }
-          //Kiểm tra tồn kho sản phẩm
-         $san_pham = $this->modelSanPham->getSanPhamById($id_sanpham);
-            if(!$san_pham || $san_pham['cosan_stock'] <= 0) {
-                echo "Sản phẩm không tồn tại hoặc đã sử dụng";
+        $user = $_SESSION['user_client']['id'];
+        if (isset($user)) {
+            // Lấy thông tin người dùng từ email
+            $mail = $this->modelSanPham->getNguoiDungFromEmail($user);
+
+            // Lấy thông tin giỏ hàng của người dùng
+            $gio_hang = $this->modelSanPham->getGioHangFromUser($mail['id']);
+
+            // Nếu giỏ hàng chưa tồn tại, tạo mới
+            if (!$gio_hang) {
+                $gio_hangId = $this->modelSanPham->addGioHang($mail['id']);
+                $gio_hang = ['id' => $gio_hangId];
+                $chi_tiet_gio_hang = [];
+            } else {
+                // Lấy chi tiết giỏ hàng
+                $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
+            }
+
+            // Kiểm tra sản phẩm có tồn tại không
+            $san_pham = $this->modelSanPham->getSanPhamById($id_san_pham);
+            if (!$san_pham) {
+                echo "Sản phẩm không tồn tại.";
                 return;
             }
 
-            $tong_so_luong = $cosan_stock;
+            $tong_so_luong = $so_luong; // Tổng số lượng muốn thêm vào giỏ hàng
             $checkSanPham = false;
 
-            foreach($chi_tiet_gio_hang as $detail){
-                if($detail['id_sanpham'] == $id_sanpham){
-                    $tong_so_luong += $detail('cosan_stock');
-                    $checkSanPham = true ;
+            // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
+            foreach ($chi_tiet_gio_hang as $detail) {
+                if ($detail['id_san_pham'] == $id_san_pham) {
+                    $tong_so_luong += $detail['so_luong']; // Cộng số lượng đã có trong giỏ hàng
+                    $checkSanPham = true;
                     break;
                 }
             }
 
-            if($tong_so_luong > $san_pham['cosan_stock']){
-                echo "Ko đủ số lượng sản phẩm trong kho . Chỉ còn " . $san_pham['cosan_stock'] . "sản phẩm";
-                return;
+            // Thêm hoặc cập nhật sản phẩm trong giỏ hàng
+            if ($checkSanPham) {
+                $this->modelSanPham->updateSoLuong($gio_hang['id'], $id_san_pham, $tong_so_luong);
+            } else {
+                $this->modelSanPham->addDetailGioHang($gio_hang['id'], $id_san_pham, $so_luong);
             }
 
-            if($checkSanPham){
-                $this->modelSanPham->updateSoLuong($gio_hang['id'], $id_sanpham , $tong_so_luong);
-
-            }else{
-                $this->modelSanPham->addDetailGioHang($gio_hang['id'], $id_sanpham , $cosan_stock);
-            }
-           
-            header('Location: ' . BASE_URL . '?act=gio-hang' );
-
-         
-       }else{
-        header('Location: ' . BASE_URL . '?act=form-dang-nhap-client' );
-      }
+            // Chuyển hướng đến giỏ hàng
+            header('Location: ?act=gio-hang');
+        } else {
+            // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+            header("Location: ?act=form-dang-nhap-client");
+        }
     }
-   }
+}
 
+  
 
+ public function gioHang()
+ {
+
+     $user = $_SESSION['user_client']['id'];
+     if (isset($user)) {
+         $mail = $this->modelSanPham->getNguoiDungFromEmail($user);
+         // var_dump($mail["id"]);die;
+
+         $gio_hang = $this->modelSanPham->getGioHangFromUser($mail['id']);
+         if (!$gio_hang) {
+             $gio_hangId = $this->modelSanPham->addGioHang($mail['id']);
+             $gio_hang = ['id' => $gio_hangId];
+             $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
+         } else {
+             $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
+
+         }
+         $idsoLuong = [];
+         foreach ($chi_tiet_gio_hang as $giohang) {
+             $idsoLuong[] = $giohang['id_san_pham'];
+
+         }
+        //  $soluong = $this->modelSanPham->getSoLuongNhieuSanPham($idsoLuong);
+
+         // var_dump($chi_tiet_gio_hang);die;
+         // $max = $this->modelSanPham->maxsoluong();
+         require_once './views/layout/giohang.php';
+
+     } else {
+         header("Location: ?act=form-dang-nhap-client");
+
+     }
+ }
     
+ public function xoaGioHang()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['chi_tiet_id'];
+            // var_dump($id);die;
+            $this->modelSanPham->xoa($id);
+            header("Location: ?act=gio-hang");
+        }
+
+    }
 
 }
 

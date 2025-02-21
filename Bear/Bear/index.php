@@ -27,16 +27,9 @@ match ($act) {
     '/' => (new HomeController())->home(),
     'home' => (new HomeController())->home(),
 
-
-    'san-pham' => (new HomeController())->show(),
-    //Chi tiết sản phẩm
-    'chi-tiet-sp' => (new HomeController())->chitietSP(),
-
-    // 'them-gio-hang' => (new  HomeController())->addGioHang(),
-    
+    //giao diện tĩnh
     'form-khuyen-mai' => (new spBanChayController())->formKhuyenMai(),
     'gioi-thieu' => (new GioiThieuController())->gioiThieu(),
-
 
     //đăng nhập và đăng ký
     'form-dang-ki-client' => (new dangNhapClientController())->formdangki(),
@@ -46,10 +39,12 @@ match ($act) {
     'log-out-client' => (new dangNhapClientController())->logoutclient(),
 
 
-    //Đơn hàng
-    // 'lich-su-mua-hang' => (new SanPhamController())->lichSuMuaHang(),
+    //Chi tiết sản phẩm
+    'san-pham' => (new SanPhamController())->show(),
+    'chi-tiet-sp' => (new SanPhamController())->chitietSP(),
 
     //Giỏ hàng
     'them-gio-hang' =>(new SanPhamController())->addGioHang(),
-    
+    'gio-hang' =>(new SanPhamController())->gioHang(),
+    'xoa-gio-hang' =>(new SanPhamController())->xoaGioHang(),
 };

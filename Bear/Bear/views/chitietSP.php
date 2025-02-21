@@ -40,13 +40,13 @@
                     <!-- Số lượng -->
                     <div class="flex items-center space-x-2 mb-4">
                         <button type="button" class="dau px-4 py-2 bg-gray-200 rounded-l-lg hover:bg-pink-500 hover:text-white transition duration-200" onclick="decreaseQuantity()">-</button>
-                        <input readonly type="number" class="quantity w-16 text-center border border-gray-300 rounded-lg" id="quantity" name="cosan_stock" value="0" min="0">
-                        <input type="hidden" name="id" value="<?= $sp['id']; ?>">
+                        <input type="hidden" name="id_san_pham" value="<?= $sp['id']; ?>">
+                        <input readonly type="number" class="quantity w-16 text-center border border-gray-300 rounded-lg" id="quantity" name="so_luong" value="1" min="1">
                         <button type="button" class="dau px-4 py-2 bg-gray-200 rounded-r-lg hover:bg-pink-500 hover:text-white transition duration-200" onclick="increaseQuantity()">+</button>
                     </div>
                     <?php if ($sp['cosan_stock'] == 0): ?>
                         <div>
-                            <button>Đã hết hàng</button>
+                            <button disabled >Đã hết hàng</button>
                         </div>
                     <?php else: ?>
                         <div class="flex gap-4 mb-4">
