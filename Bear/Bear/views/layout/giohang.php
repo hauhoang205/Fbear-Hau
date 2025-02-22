@@ -41,8 +41,13 @@
                             </td>
                             <td class="p-2 text-red-500 font-bold"><?= number_format($gioHang['gia_coso'], 0, ',', '.') . ' đ' ?></td>
                             <td class="p-2">
-                                <input type="number" class="w-16 text-center border rounded-md update-soluong" data-id="<?= $gioHang['id_san_pham'] ?>" value="<?= $gioHang['so_luong'] ?>" min="1">
-                            </td>
+    <input type="number" class="w-16 text-center border rounded-md update-soluong" 
+        data-id="<?= $gioHang['id_san_pham'] ?>" 
+        value="<?= $gioHang['so_luong'] ?>" 
+        min="1"
+        data-goc="<?= $gioHang['so_luong'] ?>">
+</td>
+
                             <td class="p-2 font-bold tam-tinh" id="tam-tinh-<?= $gioHang['id_san_pham'] ?>" data-gia="<?= $gioHang['gia_coso'] ?>">
                                 <?= number_format($tam_tinh, 0, ',', '.') . ' đ' ?>
                             </td>
@@ -77,43 +82,33 @@
 
     <script>
         $(document).ready(function() {
-            $(".update-soluong").on("input", function() {
-                let id_san_pham = $(this).data("id");
-                let so_luong = $(this).val();
-                let gia_coso = parseInt($("#tam-tinh-" + id_san_pham).attr("data-gia")); // Lấy giá sản phẩm từ data-gia
+    $(".update-soluong").each(function() {
+        $(this).val($(this).attr("data-goc")); // Reset số lượng về giá trị gốc
+    });
 
-                // Kiểm tra nếu số lượng nhỏ hơn 1 thì đặt lại thành 1
-                if (so_luong < 1) {
-                    so_luong = 1;
-                    $(this).val(1);
-                }
+    $(".update-soluong").on("input", function() {
+        let id_san_pham = $(this).data("id");
+        let so_luong = $(this).val();
+        let gia_coso = parseInt($("#tam-tinh-" + id_san_pham).attr("data-gia")); // Lấy giá sản phẩm từ data-gia
 
-                let tam_tinh = gia_coso * so_luong;
-                $("#tam-tinh-" + id_san_pham).text(tam_tinh.toLocaleString("vi-VN") + " đ");
+        if (so_luong < 1) {
+            so_luong = 1;
+            $(this).val(1);
+        }
 
-                // Cập nhật tổng tiền tạm tính
-                let tong_tien = 0;
-                $(".tam-tinh").each(function() {
-                    tong_tien += parseInt($(this).text().replace(/\D/g, "")); // Chuyển đổi giá trị text về số
-                });
+        let tam_tinh = gia_coso * so_luong;
+        $("#tam-tinh-" + id_san_pham).text(tam_tinh.toLocaleString("vi-VN") + " đ");
 
-                $("#tong-tien").text(tong_tien.toLocaleString("vi-VN") + " đ");
-                $("#tong-tien-cuoi").text((tong_tien + 35000).toLocaleString("vi-VN") + " đ");
-
-                // Gửi yêu cầu cập nhật lên server
-                // $.ajax({
-                //     url: "update_cart.php",
-                //     type: "POST",
-                //     data: {
-                //         id_san_pham,
-                //         so_luong
-                //     },
-                //     success: function(response) {
-                //         console.log("Cập nhật thành công!");
-                //     }
-                // });
-            });
+        let tong_tien = 0;
+        $(".tam-tinh").each(function() {
+            tong_tien += parseInt($(this).text().replace(/\D/g, ""));
         });
+
+        $("#tong-tien").text(tong_tien.toLocaleString("vi-VN") + " đ");
+        $("#tong-tien-cuoi").text((tong_tien + 35000).toLocaleString("vi-VN") + " đ");
+    });
+});
+
     </script>
 
 </body>

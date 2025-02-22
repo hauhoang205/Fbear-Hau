@@ -157,6 +157,10 @@ class SanPhamController {
           
     }
 
+    public function xuLiThanhToan(){
+        
+    }
+
 }
 
 ?>

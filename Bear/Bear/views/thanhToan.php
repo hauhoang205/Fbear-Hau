@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-50 p-8">
-    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md mt-8">
         <form action="?act=xu-ly-thanh-toan" method="POST">
             <h2 class="text-pink-500 text-2xl font-bold mb-4">Thông tin thanh toán</h2>
             <div class="grid grid-cols-2 gap-4">
@@ -19,7 +19,10 @@
                 <input type="text" name="sdt_nguoi_nhan" placeholder="Email *"value="<?= $user['email'] ?> " class="border p-2 rounded w-full">
                 <input type="text" name="sdt_nguoi_nhan" placeholder="Số điện thoại *" value="<?= $user['dien_thoai'] ?>" class="border p-2 rounded w-full">
                 <input type="text" name="dia_chi_nguoi_nhan" placeholder="Địa chỉ *" value="<?= $user['dia_chi'] ?> " class="border p-2 rounded w-full">
+                <textarea class="border p-2  " name="ghi_chu" placeholder="Ghi chú đơn hàng" id=""></textarea>
+ 
             </div>
+
             
             <h2 class="text-pink-500 text-2xl font-bold mt-6 mb-4">Đơn hàng của bạn</h2>
             <div class="border-b pb-4">
@@ -27,9 +30,8 @@
                     <thead>
                         <tr class="text-pink-500 font-bold">
                             <th class="p-2">SẢN PHẨM</th>
-                            <th class="p-2">SÓ LƯỢNG</th>
-                            <th class="p-2">ĐƠN GIÁ</th>
-                            <th class="p-2">TẠM TÍNH</th>
+                            <th class="p-2">SỐ LƯỢNG</th>
+                            <th class="p-2 text-right">TẠM TÍNH</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +43,9 @@
                             $tong_tien += $thanh_tien;
                         ?>
                             <tr>
-                                <td class="p-2"><?= $gioHang['ten'] ?> × <?= $gioHang['so_luong'] ?></td>
+                                <td class="p-2"><?= $gioHang['ten'] ?></td>
+                                <td class="p-2"><?= $gioHang['so_luong'] ?> </td>
+                                
                                 <td class="p-2 text-right"><?= number_format($thanh_tien, 0, ',', '.') ?> đ</td>
                             </tr>
                         <?php endforeach; ?>

@@ -12,7 +12,6 @@ require_once './controllers/DichVuController.php';
 require_once './controllers/dangNhapClientController.php';
 require_once './controllers/SanPhamController.php';
 // Require toàn bộ file Models
-require_once './models/Student.php';
 require_once './models/SanPham.php';
 require_once './models/DanhMuc.php';
 require_once './models/dangNhapClient.php';
@@ -50,5 +49,5 @@ match ($act) {
 
     //Thanh toán 
     'thanh-toan' =>(new SanPhamController())->thanhToan(),
-    // 'xu-li-thanh-toan' =>(new SanPhamController())->xuLiThanhToan(),
+    'xu-li-thanh-toan' =>(new SanPhamController())->xuLiThanhToan(),
 };
