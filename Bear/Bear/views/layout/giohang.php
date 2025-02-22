@@ -64,7 +64,10 @@
                 <div class="text-gray-700">TẠM TÍNH: <span class="font-bold" id="tong-tien"><?= number_format($tong_tien, 0, ',', '.') . ' đ' ?></span></div>
                 <div class="text-gray-700">GIAO HÀNG: <span class="font-bold">35.000 đ</span></div>
                 <div class="text-lg font-bold text-gray-900">TỔNG: <span id="tong-tien-cuoi"><?= number_format($tong_tien + 35000, 0, ',', '.') . ' đ' ?></span></div>
+                <a href="?act=thanh-toan">
                 <button class="bg-pink-500 text-white px-6 py-3 rounded-md mt-3 w-full hover:bg-pink-600">TIẾN HÀNH THANH TOÁN</button>
+
+                </a>
             </div>
         </div>
 
@@ -98,17 +101,17 @@
                 $("#tong-tien-cuoi").text((tong_tien + 35000).toLocaleString("vi-VN") + " đ");
 
                 // Gửi yêu cầu cập nhật lên server
-                $.ajax({
-                    url: "update_cart.php",
-                    type: "POST",
-                    data: {
-                        id_san_pham,
-                        so_luong
-                    },
-                    success: function(response) {
-                        console.log("Cập nhật thành công!");
-                    }
-                });
+                // $.ajax({
+                //     url: "update_cart.php",
+                //     type: "POST",
+                //     data: {
+                //         id_san_pham,
+                //         so_luong
+                //     },
+                //     success: function(response) {
+                //         console.log("Cập nhật thành công!");
+                //     }
+                // });
             });
         });
     </script>

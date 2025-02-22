@@ -134,6 +134,28 @@ class SanPhamController {
         }
 
     }
+    public function thanhToan(){
+       
+     $userr = $_SESSION['user_client']['id'];
+     if(isset($userr)){
+        $user = $this->modelSanPham->getNguoiDungFromEmail($userr);
+
+        $gio_hang = $this->modelSanPham->getGioHangFromUser($user['id']);
+        if(!$gio_hang){
+            $gio_hangId = $this->modelSanPham->addGioHang($user['id']);
+            $gio_hang = ['id' =>$gio_hangId];
+            $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
+
+        }else {
+            $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
+        }
+
+        require_once './views/thanhToan.php';
+     }else {
+        header("Location: ?act=form-dang-nhap-client");
+     }
+          
+    }
 
 }
 

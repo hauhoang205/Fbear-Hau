@@ -47,4 +47,8 @@ match ($act) {
     'them-gio-hang' =>(new SanPhamController())->addGioHang(),
     'gio-hang' =>(new SanPhamController())->gioHang(),
     'xoa-gio-hang' =>(new SanPhamController())->xoaGioHang(),
+
+    //Thanh toán 
+    'thanh-toan' =>(new SanPhamController())->thanhToan(),
+    // 'xu-li-thanh-toan' =>(new SanPhamController())->xuLiThanhToan(),
 };
