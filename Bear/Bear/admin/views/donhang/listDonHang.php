@@ -39,7 +39,7 @@
                     <?php foreach($listDonHang as $key=>$donHang): ?>
                   <tr>
                     <td><?= $key+1 ?></td>
-                    <td><?= $donHang['phien_token'] ?></td>
+                    <td><?= $donHang['id_KH'] ?></td>
                     <td><?= $donHang['ten'] ?></td>
                     <td><?= $donHang['dien_thoai'] ?></td>
                     <td><?= $donHang['dia_chi'] ?></td>

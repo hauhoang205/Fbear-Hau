@@ -12,26 +12,26 @@
 </head>
 <body class="bg-pink-50 p-8">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md mt-8">
-        <form action="?act=xu-ly-thanh-toan" method="POST">
+        <form action="?act=xu-li-thanh-toan" method="POST">
             <h2 class="text-pink-500 text-2xl font-bold mb-4">Thông tin thanh toán</h2>
             <div class="grid grid-cols-2 gap-4">
-                <input type="text" name="" placeholder="Họ và tên *" value="<?= $user['ten'] ?>" class="border p-2 rounded w-full">
-                <input type="text" name="sdt_nguoi_nhan" placeholder="Email *"value="<?= $user['email'] ?> " class="border p-2 rounded w-full">
-                <input type="text" name="sdt_nguoi_nhan" placeholder="Số điện thoại *" value="<?= $user['dien_thoai'] ?>" class="border p-2 rounded w-full">
-                <input type="text" name="dia_chi_nguoi_nhan" placeholder="Địa chỉ *" value="<?= $user['dia_chi'] ?> " class="border p-2 rounded w-full">
-                <textarea class="border p-2  " name="ghi_chu" placeholder="Ghi chú đơn hàng" id=""></textarea>
+                <input type="text" name="ten" placeholder="Họ và tên *" value="<?= $user['ten'] ?>" class="border p-2 rounded w-full">
+                <input type="text" name="email" placeholder="Email *"value="<?= $user['email'] ?> " class="border p-2 rounded w-full">
+                <input type="text" name="dien_thoai" placeholder="Số điện thoại *" value="<?= $user['dien_thoai'] ?>" class="border p-2 rounded w-full">
+                <input type="text" name="dia_chi" placeholder="Địa chỉ *" value="<?= $user['dia_chi'] ?> " class="border p-2 rounded w-full">
+                <textarea class="border p-2  " name="vanchuyen_thanhpho" placeholder="Ghi chú đơn hàng" id=""></textarea>
  
             </div>
 
-            
             <h2 class="text-pink-500 text-2xl font-bold mt-6 mb-4">Đơn hàng của bạn</h2>
             <div class="border-b pb-4">
                 <table class="w-full text-left">
                     <thead>
                         <tr class="text-pink-500 font-bold">
                             <th class="p-2">SẢN PHẨM</th>
+                            <th class="p-2">ĐƠN GIÁ</th>
                             <th class="p-2">SỐ LƯỢNG</th>
-                            <th class="p-2 text-right">TẠM TÍNH</th>
+                            <th class="p-2 text-right">THÀNH TIỀN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +44,7 @@
                         ?>
                             <tr>
                                 <td class="p-2"><?= $gioHang['ten'] ?></td>
+                                <td class="p-2"><?= number_format($gioHang['gia_coso'],0, ',','.')  ?></td>
                                 <td class="p-2"><?= $gioHang['so_luong'] ?> </td>
                                 
                                 <td class="p-2 text-right"><?= number_format($thanh_tien, 0, ',', '.') ?> đ</td>
@@ -61,8 +62,8 @@
 
             <div class="mt-4">
                 <label class="flex items-center text-gray-700">
-                    <input type="radio" name="phuong_thuc_thanh_toan_id" value="1" checked class="mr-2">
-                    Thanh toán khi nhận hàng (COD)
+                    <input type="radio" name="phuongthuc_thanhtoan" value="1" checked class="mr-2">
+                    Tiền mặt
                 </label>
             </div>
 

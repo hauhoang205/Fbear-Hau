@@ -158,7 +158,42 @@ class SanPhamController {
     }
 
     public function xuLiThanhToan(){
-        
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+             $ten = $_POST['ten'];
+             $email = $_POST['email'];
+             $dien_thoai = $_POST['dien_thoai'];
+             $dia_chi = $_POST['dia_chi'];
+             $vanchuyen_thanhpho = $_POST['vanchuyen_thanhpho'];
+             $tong_tien = $_POST['tong_tien'];
+             $phuongthuc_thanhtoan = $_POST['phuongthuc_thanhtoan'];
+
+             $trangthai_thanhtoan = 'xử lý';
+             $trangthai = 'xử lý';
+             $ngay_capnhat = date('Y-m-d');
+             $phien_token = 'DH-' . rand(1000, 9999);
+ 
+            $userr = $_SESSION['user_client']['id'];
+
+            $id_nguoi_dung = $userr;
+
+           $donHang = $this->modelSanPham->addThanhToan(
+             $ten,
+             $email,
+             $dien_thoai,
+             $dia_chi,
+             $vanchuyen_thanhpho,
+             $tong_tien,
+             $phuongthuc_thanhtoan,
+             $trangthai_thanhtoan,
+             $trangthai,
+             $ngay_capnhat,
+             $phien_token,
+           );
+
+           var_dump($donHang);die;
+
+
+        }
     }
 
 }

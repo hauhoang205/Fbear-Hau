@@ -193,5 +193,9 @@ class SanPham {
         }
 
     }
+
+    public function addThanhToan($ten,$email,$dien_thoai,$dia_chi,$vanchuyen_thanhpho,$tong_tien,$phuongthuc_thanhtoan,$trangthai_thanhtoan,$trangthai,$ngay_capnhat,$phien_token){
+      $sql = 'INSERT INTO order '
+    }
 }
 ?>
