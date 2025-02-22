@@ -194,8 +194,34 @@ class SanPham {
 
     }
 
-    public function addThanhToan($ten,$email,$dien_thoai,$dia_chi,$vanchuyen_thanhpho,$tong_tien,$phuongthuc_thanhtoan,$trangthai_thanhtoan,$trangthai,$ngay_capnhat,$phien_token){
-      $sql = 'INSERT INTO order '
+    public function addThanhToan( $id_KH,$ten,$email,$dien_thoai,$dia_chi,$vanchuyen_thanhpho,$tong_gia,$phuongthuc_thanhtoan,$trangthai_thanhtoan,$trangthai,$ngay_capnhat,$phien_token)
+    {
+      try{
+        $sql = 'INSERT INTO orders (id_KH,ten,email,dien_thoai,dia_chi,vanchuyen_thanhpho,tong_gia,phuongthuc_thanhtoan,trangthai_thanhtoan,trangthai,ngay_capnhat,phien_token)
+        VALUE  (:id_KH,:ten,:email,:dien_thoai,:dia_chi,:vanchuyen_thanhpho,:tong_gia,:phuongthuc_thanhtoan,:trangthai_thanhtoan,:trangthai,:ngay_capnhat,:phien_token)';
+  
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindParam(':id_KH' , $id_KH);
+        $stmt->bindParam(':ten' , $ten);
+        $stmt->bindParam(':email' , $email);
+        $stmt->bindParam(':dien_thoai' , $dien_thoai);
+        $stmt->bindParam(':dia_chi' , $dia_chi);
+        $stmt->bindParam(':vanchuyen_thanhpho' , $vanchuyen_thanhpho);
+        $stmt->bindParam(':tong_gia' , $tong_gia);
+        $stmt->bindParam(':phuongthuc_thanhtoan' , $phuongthuc_thanhtoan);
+        $stmt->bindParam(':trangthai_thanhtoan' , $trangthai_thanhtoan);
+        $stmt->bindParam(':trangthai' , $trangthai);
+        $stmt->bindParam(':ngay_capnhat' , $ngay_capnhat);
+        $stmt->bindParam(':phien_token' , $phien_token);
+  
+        $stmt->execute();
+  
+        return $this->conn->lastInsertId();
+      }catch (Exception $e) {
+        echo 'Lỗi: ' . $e->getMessage();
+      }
     }
+
 }
 ?>

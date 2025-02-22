@@ -56,7 +56,7 @@
                     <p class="text-gray-700">TẠM TÍNH: <span class="font-bold"><?= number_format($tong_tien, 0, ',', '.') ?> đ</span></p>
                     <p class="text-gray-700">GIAO HÀNG: <span class="font-bold">35.000 đ</span></p>
                     <p class="text-lg font-bold text-gray-900">TỔNG: <span><?= number_format($tong_tien + 35000, 0, ',', '.') ?> đ</span></p>
-                    <input type="hidden" name="tong_tien" value="<?= $tong_tien + 35000 ?>">
+                    <input type="hidden" name="tong_gia" value="<?= $tong_tien + 35000 ?>">
                 </div>
             </div>
 
