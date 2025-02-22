@@ -191,8 +191,22 @@ class SanPhamController {
              $phien_token,
            );
 
-           var_dump($donHang);die;
+           $gio_hang = $this->modelSanPham->getGioHangFromUser($id_KH);
+           if($gio_hang){
+            $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
 
+            foreach($chi_tiet_gio_hang as $item){
+                $donGia = $item['gia_coso'];
+
+                $this->modelSanPham->addChitietDonHang(
+                    $donHang,
+                    $item['id_san_pham'],
+                    $donGia,
+                    $item['so_luong'],
+                    $donGia * $item['so_luong']
+                );
+            }
+           }
 
         }
     }
