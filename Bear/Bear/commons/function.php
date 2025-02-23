@@ -47,10 +47,8 @@ function deleteSessionError(){
         unset($_SESSION['flash']);
     }
  }
- function formatDate($date){
-    return date("d-m-Y",strtotime($date));
-}
-if (isset($_SESSION['flash_message'])) {
+
+ if (isset($_SESSION['flash_message'])) {
     echo '<div class="alert alert-info">' . $_SESSION['flash_message'] . '</div>';
     unset($_SESSION['flash_message']); // Xóa thông báo sau khi hiển thị
 }

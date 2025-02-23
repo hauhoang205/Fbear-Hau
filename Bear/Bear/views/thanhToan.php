@@ -72,5 +72,15 @@
             </button>
         </form>
     </div>
+
+    <script>
+    setTimeout(function() {
+        let alertBox = document.querySelector('.fixed.top-5');
+        if (alertBox) {
+            alertBox.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+            setTimeout(() => alertBox.remove(), 500);
+        }
+    }, 3000);
+</script>
 </body>
 </html>

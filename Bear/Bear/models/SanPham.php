@@ -244,6 +244,23 @@ class SanPham {
       }
     }
 
+    public function thanhCong($id, $soLuong)
+    {
+        try {
+            $sql = 'UPDATE product SET soluong = soluong - :soluong WHERE id = :id AND soluong >= :soluong';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':soluong', $soLuong);
+            $stmt->execute();
+
+            return true;
+
+        } catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+    }
+
     
 
 }
