@@ -261,7 +261,45 @@ class SanPham {
         }
     }
 
-    
+    public function getTrangThaiDonHang(){
+       try{
+        $sql = 'SELECT trangthai FROM orders';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
 
+       }catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+    }
+
+    public function getPhuongThucThanhToan(){
+      try{
+        $sql = 'SELECT phuongthuc_thanhtoan FROM orders';
+        $stmt = $this->conn->prepare($sql);
+       $stmt->execute();
+       return $stmt->fetchAll();
+       
+      }catch (Exception $e) {
+           echo 'lỗi: ' . $e->getMessage();
+       }
+   }
+
+    
+    public function getDonHangFromUser($id){
+      try{
+        $sql = 'SELECT * FROM orders 
+        WHERE id_KH = :id_KH';
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindParam(':id_KH' , $id);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+      }catch (Exception $e) {
+        echo 'lỗi: ' . $e->getMessage();
+    }
+    }
 }
 ?>

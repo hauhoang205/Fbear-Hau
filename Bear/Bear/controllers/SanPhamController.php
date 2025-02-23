@@ -221,6 +221,25 @@ class SanPhamController {
         }
     }
 
+    public function lichSuMuaHang(){
+        if(isset($_SESSION['user_client'])){
+            $userr = $_SESSION['user_client']['id'];
+
+            $id_KH = $userr;
+
+            $arrTrangThaiDonHang = $this->modelSanPham->getTrangThaiDonHang();
+
+            $arrPhuongThucThanhToan = $this->modelSanPham->getPhuongThucThanhToan();
+
+            $donHang = $this->modelSanPham->getDonHangFromUser($id_KH);
+
+ 
+            require_once './views/qldonhang.php';
+        }else{
+            var_dump('Ban chua dang nhap'); die;
+        }
+    }
+
 }
 
 ?>

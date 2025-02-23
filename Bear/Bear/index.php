@@ -50,4 +50,8 @@ match ($act) {
     //Thanh toán 
     'thanh-toan' =>(new SanPhamController())->thanhToan(),
     'xu-li-thanh-toan' =>(new SanPhamController())->xuLiThanhToan(),
+
+    //Lich su mua hang
+    'lich-su-mua-hang' =>(new SanPhamController())->lichSuMuaHang(),
+
 };
