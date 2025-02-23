@@ -90,6 +90,7 @@
                     <tbody>
                         <?php $tong_tien = 0; ?>
                         <?php foreach($sanPhamDonHang as $key=>$sanPham): ?> 
+                        
                     <tr>
                       <td><?= $key+1 ?></td>
                       <td><?= $sanPham['ten'] ?></td>

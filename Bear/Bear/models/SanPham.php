@@ -301,5 +301,35 @@ class SanPham {
         echo 'lỗi: ' . $e->getMessage();
     }
     }
-}
+
+    public function getDonHangById($donHangId){
+      try{
+         $sql = 'SELECT * FROM orders WHERE id = :id ';
+
+         $stmt = $this->conn->prepare($sql);
+          $stmt->execute([':id' => $donHangId]);
+          return $stmt->fetch();
+      }catch (Exception $e) {
+        echo 'lỗi: ' . $e->getMessage();
+    }
+    }
+
+    public function getChiTietDonHangById($donHangId)
+    {
+        try {
+            $sql = 'SELECT chi_tiet_don_hang.*, product.ten, product.hinhanh
+                    FROM chi_tiet_don_hang
+                    JOIN product ON chi_tiet_don_hang.id_sanpham = product.id
+                    WHERE chi_tiet_don_hang.id_donhang = :id_donhang
+                    ORDER BY chi_tiet_don_hang.id ASC';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id_donhang' => $donHangId]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+    }
+  }
 ?>

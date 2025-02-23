@@ -169,7 +169,7 @@ class SanPhamController {
 
              $trangthai_thanhtoan = 'Chưa thanh toán';
              $trangthai = 'xử lý';
-             $ngay_capnhat = date('Y-m-d');
+             $ngay_capnhat = date('Y-m-d H:i:s'); 
              $phien_token = 'PH' . rand(1000, 9999);
  
             $userr = $_SESSION['user_client']['id'];
@@ -240,6 +240,28 @@ class SanPhamController {
         }
     }
 
+    public function chiTietMuaHang(){
+        if(isset($_SESSION['user_client'])){
+            $userr = $_SESSION['user_client']['id'];
+
+            $id_KH = $userr;
+            $donHangId = $_GET['id'];
+
+            $arrTrangThaiDonHang = $this->modelSanPham->getTrangThaiDonHang();
+
+            $arrPhuongThucThanhToan = $this->modelSanPham->getPhuongThucThanhToan();
+            //Lấy đơn hàng theo ID
+            $donHang = $this->modelSanPham->getDonHangById($donHangId);
+            //Lấy thông tin sp đơn hàng
+            $chiTietDonHang = $this->modelSanPham->getChiTietDonHangById($donHangId);
+
+
+ 
+            require_once './views/chitietmuahang.php';
+        }else{
+            var_dump('Ban chua dang nhap'); die;
+        }
+    }
 }
 
 ?>

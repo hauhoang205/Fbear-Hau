@@ -1,3 +1,7 @@
+<?php require_once 'layout/header.php' ?>
+<?php require_once 'layout/menu.php' ?>
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -30,17 +34,19 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
+                <?php foreach($donHang as $donHangs): ?>
                     <tr class="border-b hover:bg-pink-50 transition-all">
-                        <td class="py-3">#001</td>
-                        <td class="py-3">10-02-2024</td>
-                        <td class="py-3">500.000đ</td>
-                        <td class="py-3">Momo</td>
-                        <td class="py-3">Đang giao</td>
+                        <td class="py-3"><?= $donHangs['phien_token']  ?></td>
+                        <td class="py-3"><?= $donHangs['ngay_capnhat'] ?></td>
+                        <td class="py-3"><?= $donHangs['tong_gia'] ?></td>
+                        <td class="py-3"><?= $donHangs['phuongthuc_thanhtoan'] ?></td>
+                        <td class="py-3"><?= $donHangs['trangthai'] ?></td>
                         <td class="py-3">
-                            <button class="px-3 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600">Chi tiết</button>
+                            <a href="?act=chi-tiet-mua-hang&id"><button class="px-3 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600">Chi tiết</button>                            </a>
                             <button class="px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Hủy</button>
                         </td>
                     </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>

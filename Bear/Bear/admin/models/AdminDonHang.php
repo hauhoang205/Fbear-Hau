@@ -40,21 +40,24 @@
        }
 
        public function getListDonHang($id)
-       {
-           try {
-               $sql = 'SELECT orderitem.*, product.ten
-               FROM orderitem
-               INNER JOIN product ON orderitem.id_sanpham = product.id
-               WHERE orderitem.id_dathang = :id';
-   
-               $stmt = $this->conn->prepare($sql);
-               $stmt->bindParam(':id', $id);
-               $stmt->execute();
-               return $stmt->fetchAll();
-           } catch (Exception $e) {
-               echo "lỗi" . $e->getMessage();
-           }
-       }
+{
+    try {
+        $sql = 'SELECT chi_tiet_don_hang.*, product.ten
+                FROM chi_tiet_don_hang
+                INNER JOIN product ON chi_tiet_don_hang.id_sanpham = product.id
+                WHERE chi_tiet_don_hang.id_donhang = :id';
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (Exception $e) {
+        echo("Lỗi truy vấn getListDonHang: " . $e->getMessage());
+        
+    }
+}
+
 
        
 

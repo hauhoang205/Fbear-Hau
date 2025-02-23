@@ -52,3 +52,6 @@ function deleteSessionError(){
     echo '<div class="alert alert-info">' . $_SESSION['flash_message'] . '</div>';
     unset($_SESSION['flash_message']); // Xóa thông báo sau khi hiển thị
 }
+
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
