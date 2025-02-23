@@ -223,5 +223,28 @@ class SanPham {
       }
     }
 
+    public function addChitietDonHang($donHangId, $sanPhamId, $donGia, $soLuong, $thanhTien){
+      try{
+         $sql = 'INSERT INTO orderitem (id_dathang,id_sanpham, gia,soluong,tong_gia)
+         VALUES (:id_dathang,:id_sanpham, :gia,:soluong,:tong_gia)';
+         
+         $stmt = $this->conn->prepare($sql);
+         $stmt->bindParam(':id_dathang' , $donHangId);
+         $stmt->bindParam(':id_sanpham' , $sanPhamId);
+         $stmt->bindParam(':gia' , $donGia);
+         $stmt->bindParam(':soluong' , $soLuong);
+         $stmt->bindParam(':tong_gia' , $thanhTien);
+
+         $stmt->execute();
+
+         return true;
+
+      }catch (Exception $e) {
+        echo 'Lỗi: ' . $e->getMessage();
+      }
+    }
+
+    
+
 }
 ?>

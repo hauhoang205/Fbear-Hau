@@ -39,22 +39,24 @@
          }
        }
 
-       public function getListDonHang($id){
-        try{
-            $sql = 'SELECT * FROM orderitem WHERE id_dathang = :id';
+       public function getListDonHang($id)
+       {
+           try {
+               $sql = 'SELECT orderitem.*, product.ten
+               FROM orderitem
+               INNER JOIN product ON orderitem.id_sanpham = product.id
+               WHERE orderitem.id_dathang = :id';
+   
+               $stmt = $this->conn->prepare($sql);
+               $stmt->bindParam(':id', $id);
+               $stmt->execute();
+               return $stmt->fetchAll();
+           } catch (Exception $e) {
+               echo "lỗi" . $e->getMessage();
+           }
+       }
 
-            $stmt = $this->conn->prepare($sql);
-
-            $stmt->execute([
-              ':id' => $id,
-            ]);
-            
-            return $stmt->fetchAll();
-
-        }catch(Exception $e){
-         echo "Loi" . $e->getMessage();
-        }
-      }
+       
 
           public function updateDonHang($id,$ten,$dien_thoai,$email,$dia_chi,$vanchuyen_thanhpho,$trangthai){
         try {

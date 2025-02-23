@@ -16,8 +16,9 @@
 
         $donHang = $this->modelDonHang->getDetailDonHang($don_hang_id);
 
-        $sanPhamDonHang = $this->modelDonHang->getListDonHang($don_hang_id);
+        $sanPhamDonHang = $this->modelDonHang->getListDonHang($don_hang_id); 
 
+        var_dump($sanPhamDonHang);die;
         require_once './views/donhang/detailDonHang.php';
     }
     public function formEditDonHang(){

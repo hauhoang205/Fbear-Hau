@@ -200,12 +200,14 @@ class SanPhamController {
 
                 $this->modelSanPham->addChitietDonHang(
                     $donHang,
-                    $item['id_san_pham'],
+                    $item['id_sanpham'],
                     $donGia,
-                    $item['so_luong'],
-                    $donGia * $item['so_luong']
+                    $item['soluong'],
+                    $donGia * $item['soluong']
                 );
             }
+            
+            
            }
 
         }

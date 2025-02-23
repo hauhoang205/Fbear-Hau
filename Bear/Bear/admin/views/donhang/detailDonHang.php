@@ -52,7 +52,7 @@
                 <div class="col-sm-4 invoice-col">
                 Thông tin người đặt
                 <address>
-                    <strong><?= $donHang['ten'] ?></strong><br>
+                    Tên :<strong><?= $donHang['ten'] ?></strong><br>
                     Email: <?= $donHang['email'] ?><br>
                      Số điện thoại: <?= $donHang['dien_thoai']  ?><br>
                      Địa chỉ: <?= $donHang['dia_chi']  ?><br>
@@ -64,8 +64,8 @@
                   Thông tin
                   <address>
                     <strong>Mã đơn hàng: <?= $donHang['phien_token'] ?></strong><br>
-                    Tổng hàng: <?= $donHang['tong_mathang']  ?><br>
                      Tổng tiền: <?= $donHang['tong_gia'] ?><br>
+                      Ghi chú: <?= $donHang['vanchuyen_thanhpho'] ?><br>
                      Thanh toán: Tiền mặt<br>
 
                   </address>
@@ -92,7 +92,7 @@
                         <?php foreach($sanPhamDonHang as $key=>$sanPham): ?> 
                     <tr>
                       <td><?= $key+1 ?></td>
-                      <td><?= $sanPham['id_sanpham'] ?></td>
+                      <td><?= $sanPham['ten'] ?></td>
                       <td><?= $sanPham['gia'] ?></td>
                       <td><?= $sanPham['soluong'] ?></td>
                       <td><?= $sanPham['tong_gia'] ?></td>
@@ -104,13 +104,14 @@
                 </div>
                 <!-- /.col -->
               </div>
+              <small class="float-right">Ngày đặt: <?= $donHang['ngay_capnhat'] ?></small>
+
               <!-- /.row -->
 
               <div class="row">
 
                 <!-- /.col -->
                 <div class="col-6">
-                  <p class="lead">Ngày đặt hàng: <?= $sanPham['ngay_capnhat'] ?></p>
 
                   <div class="table-responsive">
                     <table class="table">
