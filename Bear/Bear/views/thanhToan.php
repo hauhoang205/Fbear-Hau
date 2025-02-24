@@ -62,7 +62,7 @@
 
             <div class="mt-4">
                 <label class="flex items-center text-gray-700">
-                    <input type="radio" name="phuongthuc_thanhtoan" value="1" checked class="mr-2">
+                    <input type="radio" name="phuongthuc_thanhtoan" value="Tiền mặt" checked class="mr-2">
                     Tiền mặt
                 </label>
             </div>

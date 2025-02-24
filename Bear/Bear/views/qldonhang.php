@@ -38,7 +38,7 @@
                     <tr class="border-b hover:bg-pink-50 transition-all">
                         <td class="py-3"><?= $donHangs['phien_token']  ?></td>
                         <td class="py-3"><?= $donHangs['ngay_capnhat'] ?></td>
-                        <td class="py-3"><?= $donHangs['tong_gia'] ?></td>
+                        <td class="py-3"><?= number_format($donHangs['tong_gia'], 0, ',', '.') ?> đ</td>
                         <td class="py-3"><?= $donHangs['phuongthuc_thanhtoan'] ?></td>
                         <td class="py-3"><?= $donHangs['trangthai'] ?></td>
                         <td class="py-3">
