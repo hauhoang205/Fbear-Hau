@@ -208,7 +208,9 @@ class SanPhamController {
                 );
                 // var_dump($test); die;
             }
-
+                 // Xóa chi tiết giỏ hàng thông qua id_gio_hang
+             $this->modelSanPham->clearDetailGioHang($gio_hang['id']);
+            //xóa giỏ hàng thông qua id người dùng
             $this->modelSanPham->clearGioHang($id_KH);
 
 
