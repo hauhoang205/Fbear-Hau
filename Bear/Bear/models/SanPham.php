@@ -276,11 +276,11 @@ class SanPham {
     public function thanhCong($id, $soLuong)
     {
         try {
-            $sql = 'UPDATE product SET soluong = soluong - :soluong WHERE id = :id AND soluong >= :soluong';
+            $sql = 'UPDATE product SET cosan_stock = cosan_stock - :cosan_stock WHERE id = :id AND cosan_stock >= :cosan_stock';
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':soluong', $soLuong);
+            $stmt->bindParam(':cosan_stock', $soLuong);
             $stmt->execute();
 
             return true;

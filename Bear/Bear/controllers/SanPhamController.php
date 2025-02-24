@@ -216,7 +216,8 @@ class SanPhamController {
 
             $_SESSION['flash_message'] = "✅ Đặt hàng thành công! ";
                 foreach ($chi_tiet_gio_hang as $item) {
-                    $this->modelSanPham->thanhCong($item['id_sanpham'], $item['so_luong']);
+                    //Xử lí khi thanh toán số lượng ở sản phẩm sẽ trừ đi
+                    $this->modelSanPham->thanhCong($item['id_san_pham'], $item['so_luong']);
                 }
                 header('Location: ?act=lich-su-mua-hang');
 
