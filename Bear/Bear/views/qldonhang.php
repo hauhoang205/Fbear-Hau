@@ -17,7 +17,7 @@
         <div class="flex justify-center mb-6">
             <input type="text" id="searchInput" placeholder="Tìm kiếm đơn hàng..." 
                 class="px-4 py-2 border border-pink-300 rounded-l-md focus:ring-2 focus:ring-pink-400 outline-none">
-            <button id="searchBtn" 
+            <button type="button" id="searchBtn" 
                 class="px-4 py-2 bg-pink-500 text-white rounded-r-md hover:bg-pink-600 transition-all">Tìm kiếm</button>
         </div>
         
@@ -43,7 +43,9 @@
                         <td class="py-3"><?= $donHangs['trangthai'] ?></td>
                         <td class="py-3">
                             <a href="?act=chi-tiet-mua-hang&id=<?= $donHangs['id'] ?>"><button class="px-3 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600">Chi tiết</button>                            </a>
-                            <button class="px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Hủy</button>
+                            <?php if($donHangs['trangthai'] == 'xử lý'): ?>
+                            <a href="?act=huy-don-hang&id=<?= $donHangs['id']?>"><button class="px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" onclick="return confirm('Bạn muốn hủy đơn hàng?')">Hủy đơn hàng</button></a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach ?>

@@ -301,6 +301,7 @@ class SanPham {
             echo 'lỗi: ' . $e->getMessage();
         }
     }
+     
 
     public function getPhuongThucThanhToan(){
       try{
@@ -342,7 +343,27 @@ class SanPham {
         echo 'lỗi: ' . $e->getMessage();
     }
     }
+   public function updateTrangThaiDonHang($donHangId, $trangThai) {
+    try {
+        $sql = "UPDATE orders 
+                SET trangthai = :trangthai 
+                WHERE id = :id";
 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':trangthai' => $trangThai,
+            ':id' => $donHangId
+        ]);
+
+        return true;
+    } catch (Exception $e) {
+        echo 'Lỗi: ' . $e->getMessage();
+        return false; // Trả về false nếu có lỗi
+    }
+}
+
+
+   //lấy chi tiết hơn
     public function getChiTietDonHangById($donHangId)
     {
         try {
@@ -360,5 +381,19 @@ class SanPham {
             echo 'lỗi: ' . $e->getMessage();
         }
     }
+  //Lấy bình thường để in ra kết quả đã hủy đơn
+  public function getChiTietDonHang($donHangId){
+    try{
+      $sql = "SELECT id_san_pham , so_luong FROM chi_tiet_don_hangs WHERE id_don_hang = :id_don_hang";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam(':id_don_hang' , $donHangId);
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+
+    }catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+  }
   }
 ?>

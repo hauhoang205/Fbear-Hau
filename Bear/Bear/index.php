@@ -54,6 +54,5 @@ match ($act) {
     //Lich su mua hang
     'lich-su-mua-hang' =>(new SanPhamController())->lichSuMuaHang(),
     'chi-tiet-mua-hang' =>(new SanPhamController())->chiTietMuaHang(),
-
-
+    'huy-don-hang' =>(new SanPhamController())->huyDonHang(),
 };

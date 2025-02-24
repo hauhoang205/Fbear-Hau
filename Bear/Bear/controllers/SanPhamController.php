@@ -268,6 +268,37 @@ class SanPhamController {
             var_dump('Ban chua dang nhap'); die;
         }
     }
+    public function huyDonHang(){
+        if(isset($_SESSION['user_client'])){
+        //   $userr = $_SESSION['user_client']['id'];
+        //   $nguoi_dung_id = $userr;
+        
+        //id lấy ở đường dẫn
+          $donHangId = $_GET['id'];
+        
+          //Lấy thông tin đơn hàng từ ID
+        $donHang = $this->modelSanPham->getDonHangById($donHangId);
+        // var_dump($donHang);die;
+
+        //Kiểm tra trạng thái đơn hàng
+        if($donHang['trangthai'] != 'xử lý'){
+            echo "Trạng thái đơn hàng của bạn đã thay đổi";
+            exit();
+        }
+
+        //Cập nhật trạng thái đơn hàng đã hủy
+        $this->modelSanPham->updateTrangThaiDonHang($donHangId, 'đã hủy');
+          
+        //Lấy danh sách sản phẩm đơn hàng khi đã hủy vẫn xem đc chi tiết
+        $this->modelSanPham->getChiTietDonHang($donHangId);
+
+        header('Location: ?act=lich-su-mua-hang');
+        exit();
+        }else{
+            echo 'Bạn chưa đăng nhập';
+            exit();
+        }
+    }
 }
 
 ?>
