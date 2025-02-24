@@ -10,8 +10,8 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="container mx-auto px-4 py-8">
+<body class="overflow-x-hidden">
+    <div class="container mx-auto px-4 py-8 ">
         <div class="flex flex-wrap md:flex-nowrap gap-8">
             <!-- Hình ảnh sản phẩm -->
             <div class="w-full md:w-1/2">
@@ -46,7 +46,7 @@
                     </div>
                     <?php if ($sp['cosan_stock'] == 0): ?>
                         <div>
-                            <button disabled >Đã hết hàng</button>
+                            <button disabled class="bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed">Đã hết hàng</button>
                         </div>
                     <?php else: ?>
                         <div class="flex gap-4 mb-4">

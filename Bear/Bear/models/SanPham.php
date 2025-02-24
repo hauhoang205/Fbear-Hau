@@ -242,6 +242,23 @@ class SanPham {
         echo 'Lỗi: ' . $e->getMessage();
       }
     }
+ // xóa giỏ hàng từ id người dùng khi thanh toán
+    public function clearGioHang($nguoiDungId)
+    {
+        try {
+            $sql = 'DELETE FROM gio_hangs WHERE id_nguoi_dung = :id_nguoi_dung';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id_nguoi_dung', $nguoiDungId);
+            ;
+            $stmt->execute();
+
+            return true;
+
+        } catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+    }
 
     public function thanhCong($id, $soLuong)
     {

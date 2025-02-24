@@ -49,9 +49,10 @@ function deleteSessionError(){
  }
 
  if (isset($_SESSION['flash_message'])) {
-    echo '<div class="alert alert-info">' . $_SESSION['flash_message'] . '</div>';
+    echo '<div class="bg-green-100 text-green-700 border border-green-400 p-4 rounded-lg shadow-md mb-4">' . $_SESSION['flash_message'] . '</div>';
     unset($_SESSION['flash_message']); // Xóa thông báo sau khi hiển thị
 }
+
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 

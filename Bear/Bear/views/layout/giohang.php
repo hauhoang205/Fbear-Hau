@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="bg-gray-100 p-8">
+<body class="bg-gray-100 p-8 overflow-x-hidden">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md mt-8 mb-8">
         <h2 class="text-pink-500 text-2xl font-bold mb-4">Giỏ hàng của bạn</h2>
 

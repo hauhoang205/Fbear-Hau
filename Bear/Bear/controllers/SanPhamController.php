@@ -209,11 +209,14 @@ class SanPhamController {
                 // var_dump($test); die;
             }
 
-            $_SESSION['flash_message'] = "Đặt hàng thành công! ";
+            $this->modelSanPham->clearGioHang($id_KH);
+
+
+            $_SESSION['flash_message'] = "✅ Đặt hàng thành công! ";
                 foreach ($chi_tiet_gio_hang as $item) {
                     $this->modelSanPham->thanhCong($item['id_sanpham'], $item['so_luong']);
                 }
-                header('Location: ' . BASE_URL); // chio tiết đơn hàng vào đây nhé
+                header('Location: ?act=lich-su-mua-hang');
 
             } else {
                 var_dump("loi dat hang ");

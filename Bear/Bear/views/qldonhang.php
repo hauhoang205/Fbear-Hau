@@ -60,6 +60,8 @@
                 row.style.display = row.innerText.toLowerCase().includes(searchTerm) ? '' : 'none';
             });
         });
+
+        
     </script>
 </body>
 </html>
