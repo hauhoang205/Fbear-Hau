@@ -18,11 +18,12 @@ class AdminDonHangController
   {
     $don_hang_id = $_GET['id_donhang'];
 
+    //var_dump($don_hang_id);die;
     $donHang = $this->modelDonHang->getDetailDonHang($don_hang_id);
-    // var_dump($donHang);die;s
+//    var_dump($donHang);die;
 
     $sanPhamDonHang = $this->modelDonHang->getListDonHang($don_hang_id);
-    var_dump($sanPhamDonHang);die;
+    // var_dump($sanPhamDonHang);die;
     require_once './views/donhang/detailDonHang.php';
   }
 

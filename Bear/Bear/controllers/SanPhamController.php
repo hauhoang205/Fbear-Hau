@@ -194,17 +194,19 @@ class SanPhamController {
            $gio_hang = $this->modelSanPham->getGioHangFromUser($id_KH);
            if($gio_hang){
             $chi_tiet_gio_hang = $this->modelSanPham->getDetailGioHang($gio_hang['id']);
-
+            
             foreach($chi_tiet_gio_hang as $item){
+                // var_dump($item); die;
                 $donGia = $item['gia_coso'];
 
-                $this->modelSanPham->addChitietDonHang(
+                $test = $this->modelSanPham->addChitietDonHang(
                     $donHang,
-                    $item['id_sanpham'],
+                    $item['id_san_pham'],
                     $donGia,
-                    $item['soluong'],
-                    $donGia * $item['soluong']
+                    $item['so_luong'],
+                    $donGia * $item['so_luong']
                 );
+                // var_dump($test); die;
             }
 
             $_SESSION['flash_message'] = "Đặt hàng thành công! ";

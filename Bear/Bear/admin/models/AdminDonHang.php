@@ -25,6 +25,7 @@
           public function getDetailDonHang($id){
          try{
              $sql = 'SELECT * FROM orders WHERE id = :id';
+
  
              $stmt = $this->conn->prepare($sql);
  
@@ -42,9 +43,9 @@
        public function getListDonHang($id)
 {
     try {
-        $sql = 'SELECT chi_tiet_don_hang.*, product.ten
+        $sql = 'SELECT * 
                 FROM chi_tiet_don_hang
-                INNER JOIN product ON chi_tiet_don_hang.id_sanpham = product.id
+                INNER JOIN product ON chi_tiet_don_hang.id_san_pham = product.id
                 WHERE chi_tiet_don_hang.id_donhang = :id';
 
         $stmt = $this->conn->prepare($sql);

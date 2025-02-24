@@ -225,18 +225,17 @@ class SanPham {
 
     public function addChitietDonHang($donHangId, $sanPhamId, $donGia, $soLuong, $thanhTien){
       try{
-         $sql = 'INSERT INTO orderitem (id_dathang,id_sanpham, gia,soluong,tong_gia)
-         VALUES (:id_dathang,:id_sanpham, :gia,:soluong,:tong_gia)';
+         $sql = 'INSERT INTO chi_tiet_don_hang (id_donhang,id_san_pham, gia,so_luong,tong_gia)
+         VALUES (:id_donhang,:id_san_pham, :gia,:so_luong,:tong_gia)';
          
          $stmt = $this->conn->prepare($sql);
-         $stmt->bindParam(':id_dathang' , $donHangId);
-         $stmt->bindParam(':id_sanpham' , $sanPhamId);
+         $stmt->bindParam(':id_donhang' , $donHangId);
+         $stmt->bindParam(':id_san_pham' , $sanPhamId);
          $stmt->bindParam(':gia' , $donGia);
-         $stmt->bindParam(':soluong' , $soLuong);
+         $stmt->bindParam(':so_luong' , $soLuong);
          $stmt->bindParam(':tong_gia' , $thanhTien);
 
          $stmt->execute();
-
          return true;
 
       }catch (Exception $e) {
@@ -319,7 +318,7 @@ class SanPham {
         try {
             $sql = 'SELECT chi_tiet_don_hang.*, product.ten, product.hinhanh
                     FROM chi_tiet_don_hang
-                    JOIN product ON chi_tiet_don_hang.id_sanpham = product.id
+                    JOIN product ON chi_tiet_don_hang.id_san_pham = product.id
                     WHERE chi_tiet_don_hang.id_donhang = :id_donhang
                     ORDER BY chi_tiet_don_hang.id ASC';
 

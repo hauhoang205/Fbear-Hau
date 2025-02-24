@@ -149,6 +149,8 @@
             updateButtonState();
             toggleQuantityButtons();
         }
+
+        
     </script>
 
 </body>
