@@ -42,7 +42,7 @@
                         <td class="py-3"><?= $donHangs['phuongthuc_thanhtoan'] ?></td>
                         <td class="py-3"><?= $donHangs['trangthai'] ?></td>
                         <td class="py-3">
-                            <a href="?act=chi-tiet-mua-hang&id"><button class="px-3 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600">Chi tiết</button>                            </a>
+                            <a href="?act=chi-tiet-mua-hang&id=<?= $donHangs['id'] ?>"><button class="px-3 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600">Chi tiết</button>                            </a>
                             <button class="px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Hủy</button>
                         </td>
                     </tr>

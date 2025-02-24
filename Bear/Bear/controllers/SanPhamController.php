@@ -257,8 +257,6 @@ class SanPhamController {
             //Lấy thông tin sp đơn hàng
             $chiTietDonHang = $this->modelSanPham->getChiTietDonHangById($donHangId);
 
-
- 
             require_once './views/chitietmuahang.php';
         }else{
             var_dump('Ban chua dang nhap'); die;

@@ -50,8 +50,7 @@
                         </div>
                     <?php else: ?>
                         <div class="flex gap-4 mb-4">
-                            <button type="submit" class="w-1/2 bg-pink-300 hover:bg-pink-400 text-white font-bold py-2 rounded-lg">Thêm vào giỏ hàng</button>
-                            <button type="submit" class="w-1/2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 rounded-lg">Mua ngay</button>
+                            <button type="submit" class="w-1/2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 rounded-lg">Thêm vào giỏ hàng</button>
                         </div>
                     <?php endif; ?>
                 </form>
@@ -129,7 +128,7 @@
             var quantityInput = document.getElementById('quantity');
             var currentQuantity = parseInt(quantityInput.value);
 
-            if (currentQuantity > 0) {
+            if (currentQuantity > 1) {
                 quantityInput.value = currentQuantity - 1;
             }
             updateButtonState();
