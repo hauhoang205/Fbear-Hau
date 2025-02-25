@@ -37,6 +37,9 @@ match ($act) {
     'check-dang-nhap-client' => (new dangNhapClientController())->dangnhap(),
     'log-out-client' => (new dangNhapClientController())->logoutclient(),
 
+    //Chi tiết tài khoản
+    'chi-tiet-tai-khoan-client' => (new dangNhapClientController())->chiTietTaiKhoanClient(),
+
 
     //Chi tiết sản phẩm
     'san-pham' => (new SanPhamController())->show(),

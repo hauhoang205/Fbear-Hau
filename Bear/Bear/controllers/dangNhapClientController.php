@@ -149,5 +149,15 @@
             header('Location: ' . BASE_URL . '?act=/');
         }
     }
+
+    public function chiTietTaiKhoanClient(){
+        if(isset($_SESSION['user_client'])){
+            
+            $user = $_SESSION['user_client'];
+            $id = $user['id'];
+           
+
+        }
+    }
  }
 ?>
