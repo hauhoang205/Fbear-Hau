@@ -167,5 +167,17 @@
             echo "Bạn chưa đăng nhập";
         }
     }
+
+    public function formSuaThongTinClient(){
+        if(isset($_SESSION['user_client'])){
+          
+            $user = $_SESSION['user_client'];
+            $id = $user['id'];
+
+            require_once './views/layout/chiTietTaiKhoan/formSuaThongTinClient.php';
+
+
+        }
+    }
  }
 ?>

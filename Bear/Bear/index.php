@@ -39,7 +39,8 @@ match ($act) {
 
     //Chi tiết tài khoản
     'chi-tiet-tai-khoan-client' => (new dangNhapClientController())->chiTietTaiKhoanClient(),
-
+    'form-sua-thong-tin-client' => (new dangNhapClientController())->formSuaThongTinClient(),
+    'sua-thong-tin-client' => (new dangNhapClientController())->SuaThongTinClient(),
 
     //Chi tiết sản phẩm
     'san-pham' => (new SanPhamController())->show(),
