@@ -68,6 +68,18 @@ class DangNhapClient {
        return false;
      }
    }
+
+   public function showClient($id){
+     try{
+         $sql = 'SELECT * FROM user WHERE id = :id';
+         $stmt = $this->conn->prepare($sql);
+         $stmt->bindParam(':id' , $id);
+         $stmt->execute();
+         return $stmt->fetch();
+     }catch(Exception $e){
+       echo 'Lỗi' . $e->getMessage();
+     }
+   }
 }
 
 ?>

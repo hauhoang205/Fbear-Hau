@@ -153,10 +153,18 @@
     public function chiTietTaiKhoanClient(){
         if(isset($_SESSION['user_client'])){
             
+            //Lấy thông tin người dùng từ session
             $user = $_SESSION['user_client'];
             $id = $user['id'];
-           
+            // var_dump($user);die;
 
+            $showUser = $this->modelDangNhap->showClient($id);
+            
+           $_SESSION['user_client'] = $showUser;
+           
+            require_once './views/layout/chiTietTaiKhoan/formChiTietTaiKhoanClient.php';
+        }else{
+            echo "Bạn chưa đăng nhập";
         }
     }
  }
