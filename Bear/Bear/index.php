@@ -14,6 +14,8 @@ require_once './controllers/SanPhamController.php';
 require_once './models/SanPham.php';
 require_once './models/DanhMuc.php';
 require_once './models/dangNhapClient.php';
+require_once './models/BinhLuan.php';
+
 // Route
 $act = $_GET['act'] ?? '/';
 // var_dump($_GET['act']);die();

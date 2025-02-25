@@ -90,29 +90,30 @@
     <!-- Danh sách bình luận -->
     <div class="space-y-4">
         <!-- Một bình luận mẫu -->
-        <div class="border-b border-gray-200 pb-4">
+        <!-- <div class="border-b border-gray-200 pb-4">
             <h3 class="font-semibold text-gray-800">Nguyễn Văn A</h3>
             <p class="text-gray-600">Sản phẩm rất tốt, mình rất hài lòng!</p>
             <span class="text-sm text-gray-400">01/01/2025 14:30</span>
-        </div>
-
-        <div class="border-b border-gray-200 pb-4">
-            <h3 class="font-semibold text-gray-800">Trần Thị B</h3>
-            <p class="text-gray-600">Giao hàng nhanh, chất lượng tuyệt vời!</p>
-            <span class="text-sm text-gray-400">02/01/2025 10:15</span>
-        </div>
+        </div> -->
+        <?php if (!empty($listBinhLuan)): ?>
+                    <?php foreach ($listBinhLuan as $binhLuan): ?>
+                        <div class="binh-luan">
+                            <p><strong>Người dùng: <?= $binhLuan['id_nguoi_dung']; ?></strong> - <?= $binhLuan['ngay_dang']; ?>
+                            </p>
+                            <p><?= $binhLuan['noi_dung']; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Chưa có bình luận nào.</p>
+                <?php endif; ?>
     </div>
 
     <!-- Form thêm bình luận mới -->
-    <form action="#" method="post" class="mt-4 space-y-4">
-        <div>
-            <input type="text" name="ten_nguoi_binh_luan" placeholder="Tên của bạn" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-500">
-        </div>
-        <div>
+    <form action="?act=them-binh-luan" method="post" class="mt-4 space-y-4">
+            <input type="hidden" name="id_san_pham" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-500" value="<?=  $sp['id']  ?>">
             <textarea name="noi_dung" placeholder="Nội dung bình luận" required rows="4"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-500"></textarea>
-        </div>
+
         <button type="submit"
             class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
             Gửi bình luận

@@ -2,11 +2,13 @@
 class SanPhamController {
     public $modelSanPham;
 //     public $modelChiTietSp;
+   public $modelBinhLuan;
 
     public function __construct()
     {
         $this->modelSanPham = new SanPham();
         // $this->modelChiTietSp = new SanPham();
+        $this->modelBinhLuan = new BinhLuan();
     }
  
  public function show() {
@@ -20,6 +22,7 @@ class SanPhamController {
     $id = $_GET['id_sanpham'];
     $sp = $this->modelSanPham->selectChiTietSp($id);
     
+    $listBinhLuan = $this->modelBinhLuan->layBinhLuanTheoSanPham($id);
     require_once 'views/chitietSP.php';
   }
  
@@ -296,6 +299,36 @@ class SanPhamController {
         exit();
         }else{
             echo 'Bạn chưa đăng nhập';
+            exit();
+        }
+    }
+    
+
+    public function themBinhLuan(){
+        if(!isset($_SESSION['user_client'])){
+            $_SESSION['flash_message'] = "Ban can dang nhap";
+            header("Location: ?act=form-dang-nhap-client");
+            exit();
+        }
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+             $id_san_pham = $_POST['id_san_pham'];
+            //  var_dump($id_san_pham);die;
+             $id_nguoi_dung = $_POST['id_nguoi_dung'];
+             var_dump($id_nguoi_dung);die;
+
+             $noi_dung = $_POST['noi_dung'];
+             $ngay_dang = date('Y-m-d');
+             $trang_thai = 1;
+             
+             $themBinhLuan = $this->modelBinhLuan->themBinhLuan($id_san_pham,$id_nguoi_dung,$noi_dung,$ngay_dang,$trang_thai);
+            if(isset($themBinhLuan)){
+                $_SESSION['flash_message'] = "Binh luan thanh cong";
+            }else{
+                $_SESSION['flash_message'] = "Binh luan ko thanh cong";
+            }
+
+            header("Location: ?act=chi-tiet-sp&id_sanpham=".$id_san_pham);
             exit();
         }
     }
