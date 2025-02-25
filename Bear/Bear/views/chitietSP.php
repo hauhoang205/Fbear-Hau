@@ -98,7 +98,7 @@
         <?php if (!empty($listBinhLuan)): ?>
                     <?php foreach ($listBinhLuan as $binhLuan): ?>
                         <div class="binh-luan">
-                            <p><strong>Người dùng: <?= $binhLuan['id_nguoi_dung']; ?></strong> - <?= $binhLuan['ngay_dang']; ?>
+                            <p><strong>Người dùng: <?= $binhLuan['ten_nguoi_dung']; ?></strong> - <?= $binhLuan['ngay_dang']; ?>
                             </p>
                             <p><?= $binhLuan['noi_dung']; ?></p>
                         </div>

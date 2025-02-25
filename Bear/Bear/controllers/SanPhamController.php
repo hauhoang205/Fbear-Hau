@@ -314,8 +314,9 @@ class SanPhamController {
             
              $id_san_pham = $_POST['id_san_pham'];
             //  var_dump($id_san_pham);die;
-             $id_nguoi_dung = $_POST['id_nguoi_dung'];
-             var_dump($id_nguoi_dung);die;
+            //Lấy id người dùng qua session
+             $id_nguoi_dung = $_SESSION['user_client']['id'];
+            //  var_dump($id_nguoi_dung);die;
 
              $noi_dung = $_POST['noi_dung'];
              $ngay_dang = date('Y-m-d');
