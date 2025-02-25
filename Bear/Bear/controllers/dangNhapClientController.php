@@ -179,5 +179,53 @@
 
         }
     }
+
+    public function suaThongTinClient(){
+        
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            $id = $_POST['id'];
+
+            $ten = $_POST['ten'];
+            $email = $_POST['email'];
+            $dien_thoai = $_POST['dien_thoai'];
+            $dia_chi = $_POST['dia_chi'];
+            $mat_khau =  $_POST['mat_khau'];
+
+            $errors = [];
+
+            if(empty($ten)){
+                $errors['ten'] = 'Tên bắt buộc';
+            }
+            if(empty($email)){
+                $errors['email'] = 'Tên bắt buộc';
+            }
+            if (empty($dien_thoai)) {
+                $errors['dien_thoai'] = 'Số điện thoại là bắt buộc.';
+            } elseif (!preg_match('/^(?:\+84|0)[3-9]\d{8}$/', $dien_thoai)) {
+                $errors['dien_thoai'] = 'Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (+84 hoặc 0 ở đầu, tiếp theo là 9 chữ số).';
+            }
+            if(empty($dia_chi)){
+                $errors['dia_chi'] = 'Tên bắt buộc';
+            }
+
+            if(empty($mat_khau)){
+                $errors['mat_khau'] = 'Tên bắt buộc';
+            }
+
+            $_SESSION['errors'] = $errors;
+
+            if(empty($errors)){
+                
+                $user = $this->modelDangNhap->updateUser($id,$ten,$email,$dien_thoai,$dia_chi,$mat_khau);
+
+                $_SESSION['flash_message'] = 'Cập nhật thông tin thành công!';
+                header('location: ?act=chi-tiet-tai-khoan-client');
+                exit();
+            }
+            
+        }
+          
+    }
  }
 ?>

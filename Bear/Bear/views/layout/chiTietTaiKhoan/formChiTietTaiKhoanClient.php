@@ -23,7 +23,7 @@
                     <a href="?act=form-sua-thong-tin-client" class="block bg-pink-400 text-white text-center py-2 rounded-lg hover:bg-pink-500">Sửa thông tin cá nhân</a>
                 </li>
                 <li>
-                    <a href="#" class="block bg-red-400 text-white text-center py-2 rounded-lg hover:bg-red-500">Đăng xuất</a>
+                    <a href="?act=form-dang-nhap-client" class="block bg-red-400 text-white text-center py-2 rounded-lg hover:bg-red-500">Đăng xuất</a>
                 </li>
             </ul>
         </div>

@@ -80,6 +80,38 @@ class DangNhapClient {
        echo 'Lỗi' . $e->getMessage();
      }
    }
+
+  //  public function updateUser($id){
+  //    try{
+  //        $sql = 'UPDATE user SET ten = :ten , email = :email , dien_thoai = :dien_thoai , dia_chi = :dia_chi, vai_tro = :vai_tro , mat_khau = :mat_khau WHERE id = :id' ;
+  //        $stmt = $this->conn->prepare($sql);
+  //        $stmt->execute([
+  //         'ten' =>  
+  //        ])
+
+  //    }catch(Exception $e){
+  //     echo 'Lỗi' . $e->getMessage();
+  //   }
+  //  }
+
+  public function updateUser($id,$ten,$email,$dien_thoai,$dia_chi,$mat_khau){
+    try{
+             $sql = 'UPDATE user SET ten = :ten , email = :email , dien_thoai = :dien_thoai , dia_chi = :dia_chi, mat_khau = :mat_khau WHERE id = :id' ;
+             $stmt = $this->conn->prepare($sql);
+             $stmt->execute([
+               ':id' => $id,
+              ':ten' => $ten,
+              ':email' => $email,
+              ':dien_thoai' => $dien_thoai,
+              ':dia_chi' => $dia_chi,
+              ':mat_khau' => $mat_khau 
+             ]);
+            
+             return true;    
+         }catch(Exception $e){
+          echo 'Lỗi' . $e->getMessage();
+    }
+  }
 }
 
 ?>

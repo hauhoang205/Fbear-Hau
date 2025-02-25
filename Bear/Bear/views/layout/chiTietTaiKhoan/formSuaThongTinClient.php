@@ -11,7 +11,12 @@
 </head>
 
 <body class="bg-pink-200 overflow-x-hidden">
-    <div class="container mx-auto mt-10 p-10 bg-white shadow-lg rounded-lg max-w-2xl">
+    <div class="container mx-auto mt-10 p-10 bg-white shadow-lg rounded-lg max-w-2xl relative">
+        <!-- Nút quay lại -->
+        <a href="javascript:history.back()" class="absolute top-4 left-4 text-pink-600 hover:text-pink-800 font-bold">
+            ← Quay lại
+        </a>
+
         <h2 class="text-center text-3xl font-bold text-pink-600">Chỉnh sửa thông tin cá nhân</h2>
         <form action="?act=sua-thong-tin-client" method="POST" enctype="multipart/form-data" class="mt-6">
             <input type="hidden" name="id" value="<?= $user['id'] ?>">
@@ -41,13 +46,6 @@
             </div>
             
             <div class="mb-4">
-                <label class="block text-pink-700 font-bold">Vai trò:</label>
-                <input type="date" name="vai_tro" class="w-full p-3 border rounded-lg" value="<?= $user['vai_tro'] ?? '' ?>">
-                <span class="text-red-500"> <?= $_SESSION['errors']['vai_tro'] ?? '' ?> </span>
-            </div>
-        
-            
-            <div class="mb-4">
                 <label class="block text-pink-700 font-bold">Mật khẩu:</label>
                 <input type="password" name="mat_khau" class="w-full p-3 border rounded-lg" value="<?= $user['mat_khau'] ?? '' ?>">
                 <span class="text-red-500"> <?= $_SESSION['errors']['mat_khau'] ?? '' ?> </span>
@@ -56,6 +54,7 @@
             <div class="text-center">
                 <button type="submit" class="bg-pink-600 text-white py-3 px-6 rounded-lg hover:bg-pink-700">Cập nhật</button>
             </div>
+            
         </form>
     </div>
 </body>
