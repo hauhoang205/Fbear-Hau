@@ -18,7 +18,7 @@
     <!-- Sản phẩm với popup menu -->
     <a href="<?= BASE_URL . '?act=form-khuyen-mai' ?>" class="text-white hover:text-pink-200 transition">Khuyến mại</a>
     <a href="<?= BASE_URL . '?act=gioi-thieu' ?>" class="text-white hover:text-pink-200 transition">Giới thiệu</a>
-    <a href="#" class="text-white hover:text-pink-200 transition">Liên hệ</a>
+    <a href="<?= BASE_URL . '?act=lien-he' ?>" class="text-white hover:text-pink-200 transition">Liên hệ</a>
 </nav>
 
 

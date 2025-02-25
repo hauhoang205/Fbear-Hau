@@ -7,7 +7,6 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/HomeController.php';
-require_once './controllers/spBanChayController.php';
 require_once './controllers/DichVuController.php';
 require_once './controllers/dangNhapClientController.php';
 require_once './controllers/SanPhamController.php';
@@ -27,8 +26,10 @@ match ($act) {
     'home' => (new HomeController())->home(),
 
     //giao diện tĩnh
-    'form-khuyen-mai' => (new spBanChayController())->formKhuyenMai(),
+    'form-khuyen-mai' => (new GioiThieuController())->formKhuyenMai(),
     'gioi-thieu' => (new GioiThieuController())->gioiThieu(),
+    'lien-he' => (new GioiThieuController())->lienHe(),
+  
 
     //đăng nhập và đăng ký
     'form-dang-ki-client' => (new dangNhapClientController())->formdangki(),
@@ -45,7 +46,7 @@ match ($act) {
     //Chi tiết sản phẩm
     'san-pham' => (new SanPhamController())->show(),
     'chi-tiet-sp' => (new SanPhamController())->chitietSP(),
-
+    'them-binh-luan' => (new SanPhamController())->themBinhLuan(),
     //Giỏ hàng
     'them-gio-hang' =>(new SanPhamController())->addGioHang(),
     'gio-hang' =>(new SanPhamController())->gioHang(),
