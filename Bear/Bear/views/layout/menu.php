@@ -24,7 +24,7 @@
 
       <div class="flex items-center space-x-6 mt-4 md:mt-0">
         <div class="relative">
-          <form action="?act=search">
+          <form action="?act=search" method="post">
             <input
             type="text"
             placeholder="Tìm sản phẩm yêu thích..."

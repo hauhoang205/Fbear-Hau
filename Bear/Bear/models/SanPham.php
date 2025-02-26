@@ -398,18 +398,24 @@ class SanPham {
 
   public function getAllSp($search){
     try{
-       $sql = 'SELECT * FROM product 
-               INNER JOIN category ON product.id_danhmuc = category.id
-               WHERE product.ten LIKE :search OR category.ten';
-               
-               $stmt= $this->conn->prepare($sql);
-               $stmt->bindParam(':search' , $search);
-               $stmt->execute();
-               return $stmt->fetchAll();
+      $sql = 'SELECT product.*, category.ten AS ten_danhmuc 
+        FROM product 
+        INNER JOIN category ON product.id_danhmuc = category.id
+        WHERE product.ten LIKE :search OR category.ten LIKE :search';
 
-    }catch (Exception $e) {
-            echo 'lỗi: ' . $e->getMessage();
-        }
-  }
+        $stmt = $this->conn->prepare($sql);
+        
+        // Thêm dấu % để tìm kiếm bất kỳ vị trí nào trong chuỗi
+        $search = "%$search%";
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+        
+    } catch (Exception $e) {
+        echo 'Lỗi: ' . $e->getMessage();
+    }
+}
+
   }
 ?>

@@ -336,12 +336,10 @@ class SanPhamController {
 
     public function search(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
             $search = $_POST['search'];
-
+            // var_dump($search);die;
             $dataSearch = $this->modelSanPham->getAllSp($search);
-          var_dump($dataSearch);die;
-          
+        //    var_dump($dataSearch);die;
              // Truyền kết quả tìm kiếm vào view để hiển thị
              require_once './views/layout/menu.php'; // Load menu
              require_once './views/search.php'; // Gọi view hiển thị kết quả tìm kiếm
