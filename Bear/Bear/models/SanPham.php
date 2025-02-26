@@ -9,9 +9,9 @@ class SanPham {
 
   public function getAllSanPham(){
     try{
-         $sql = 'SELECT product.*, category.ten
-         FROM product
-         INNER JOIN category ON product.id_danhmuc = category.id';
+      $sql = 'SELECT product.*, category.ten AS ten_danhmuc
+      FROM product
+      INNER JOIN category ON product.id_danhmuc = category.id';
 
          $stmt = $this->conn->prepare($sql);
 
@@ -390,6 +390,22 @@ class SanPham {
       $stmt->execute();
 
       return $stmt->fetchAll();
+
+    }catch (Exception $e) {
+            echo 'lỗi: ' . $e->getMessage();
+        }
+  }
+
+  public function getAllSp($search){
+    try{
+       $sql = 'SELECT * FROM product 
+               INNER JOIN category ON product.id_danhmuc = category.id
+               WHERE product.ten LIKE :search OR category.ten';
+               
+               $stmt= $this->conn->prepare($sql);
+               $stmt->bindParam(':search' , $search);
+               $stmt->execute();
+               return $stmt->fetchAll();
 
     }catch (Exception $e) {
             echo 'lỗi: ' . $e->getMessage();

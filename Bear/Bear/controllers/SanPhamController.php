@@ -333,6 +333,25 @@ class SanPhamController {
             exit();
         }
     }
+
+    public function search(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $search = $_POST['search'];
+
+            $dataSearch = $this->modelSanPham->getAllSp($search);
+          var_dump($dataSearch);die;
+          
+             // Truyền kết quả tìm kiếm vào view để hiển thị
+             require_once './views/layout/menu.php'; // Load menu
+             require_once './views/search.php'; // Gọi view hiển thị kết quả tìm kiếm
+        }else{
+              // Nếu không có dữ liệu tìm kiếm, hiển thị trang chủ hoặc trang lỗi
+              header('Location: ?act=home'); // Chuyển hướng về trang chủ
+              exit();
+        }
+
+    }
 }
 
 ?>

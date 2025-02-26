@@ -24,15 +24,19 @@
 
       <div class="flex items-center space-x-6 mt-4 md:mt-0">
         <div class="relative">
-          <input
+          <form action="?act=search">
+            <input
             type="text"
             placeholder="Tìm sản phẩm yêu thích..."
             class="px-5 py-3 w-80 md:w-96 rounded-full text-gray-700 focus:ring-2 focus:ring-pink-400 focus:outline-none placeholder-gray-500"
-          >
+            name="search"
+           >
           <button
             class="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-pink-500">
             🔍
           </button>
+          </form>
+       
         </div>
         <div class="flex items-center space-x-2">
           <span class="text-2xl font-bold">📞</span>
